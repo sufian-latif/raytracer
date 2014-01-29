@@ -75,7 +75,7 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth)
     
     Color color = Color(0, 0, 0);
     
-    // calculate light rays
+    // light rays
     
     int i;
     for(i = 0; i < scene.lights.size(); i++)
@@ -85,16 +85,18 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth)
         ObjectDistancePair odp = scene.findClosest(lightRay);
         if(odp.first != scene.lights[i]) continue;
         
-        // calculate diffuse color
+        // diffuse color
         double cosInc = dot(lightRay.dir, normal);
         double intensity = scene.lights[i]->intensity / sq(odp.second);
-        Color diffuse = obj->mat.diffuse * intensity * cosInc * scene.lights[i]->getColor() * obj->getColor();
+        Color diffuse = obj->mat.diffuse * intensity * cosInc * scene.lights[i]->getColor() * obj->getColor(hitPoint);
         color = color + diffuse;
 
-        // calculate specular color
+        // specular color
         Vector tmp = (lightRay.dir - 2 * (dot(lightRay.dir, normal)) * normal).unit();
         intensity = pow(dot(ray.dir, tmp), 50) * obj->mat.specular;
-        color = color + intensity * scene.lights[i]->getColor();
+        intensity *= scene.lights[i]->intensity / sq(odp.second);
+        Color specular = intensity * scene.lights[i]->getColor();
+        color = color + specular;
     }
     
 	// reflected ray
