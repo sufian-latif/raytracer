@@ -120,6 +120,7 @@ void RayTracer::writeBMP(char* filename)
 	unsigned int header[14];
 	int i, j;
 	FILE* fp = fopen(filename, "wb");
+    unsigned char pad[3] = {0, 0, 0};
     
 	header[0] = 0x4d420000;
 	header[1] = 54 + 3 * height * width;
@@ -137,6 +138,7 @@ void RayTracer::writeBMP(char* filename)
 	fflush(fp);
     
 	for(i = 0; i < height; i++)
+    {
 		for(j = 0; j < width; j++)
 		{
             unsigned char R = 255 * image[i][j].r;
@@ -147,6 +149,8 @@ void RayTracer::writeBMP(char* filename)
 			fwrite(&R, 1, 1, fp);
 			//fflush(fp);
 		}
+        fwrite(pad, width % 4, 1, fp);
+    }
     
 	fclose(fp);
 }
