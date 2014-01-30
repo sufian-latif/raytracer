@@ -10,9 +10,8 @@
 
 Ray::Ray() {}
 
-Ray::Ray(Vector origin, Vector dir, double mu)
+Ray::Ray(Vector origin, Vector dir)
 {
 	this->origin = origin;
 	this->dir = dir.unit();
-	this->mu = mu;
 }

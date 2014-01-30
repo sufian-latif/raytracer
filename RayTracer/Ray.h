@@ -14,10 +14,9 @@
 struct Ray
 {
 	Vector origin, dir;
-	double mu;
     
 	Ray();
-	Ray(Vector origin, Vector dir, double mu = 1.0);
+	Ray(Vector origin, Vector dir);
 };
 
 #endif /* defined(__RayTracing__Ray__) */

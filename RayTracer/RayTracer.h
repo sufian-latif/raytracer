@@ -13,6 +13,7 @@
 # include "Color.h"
 # include "Scene.h"
 # include <utility>
+# include <stack>
 
 typedef pair<Color, double> ColorDistancePair;
 
@@ -23,9 +24,10 @@ struct RayTracer
 	int width, height, maxDepth;
 	Vector viewPoint, camDir, camUp, camRight;
 	double fov, dx, dy, dz, aspect, right, down;
+    stack <double> refrInd;
 
 	RayTracer(Vector vp, Vector dir, Vector up, int w, int h, int maxD);
-	ColorDistancePair trace(Ray ray, Scene scene, int depth);
+	ColorDistancePair trace(Ray ray, Scene scene, int depth, double mu);
 	void createImage(Scene scene);
 	void writeBMP(char* filename);
     void cleanup();

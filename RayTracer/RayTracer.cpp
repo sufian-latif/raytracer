@@ -47,13 +47,14 @@ void RayTracer::createImage(Scene scene)
 		{
 			Vector pixel = origin + i * dy * camUp + j * dx * camRight;
 			Ray ray = Ray(viewPoint, pixel - viewPoint);
-			ColorDistancePair cdp = trace(ray, scene, 0);
+            while(!refrInd.empty()) refrInd.pop();
+			ColorDistancePair cdp = trace(ray, scene, 0, 1);
             image[i][j] = cdp.first;
             distance[i][j] = cdp.second;
 		}
 }
 
-ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth)
+ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth, double mu)
 {
     if(depth > maxDepth)
         return make_pair(Color(0, 0, 0), -1);
@@ -71,7 +72,6 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth)
     Vector hitPoint = ray.origin + dist * ray.dir;
     Vector normal = obj->getNormal(hitPoint);
 
-    if(angle(ray.dir, normal) < 90 * D2R) normal = -normal;
     
     Color color = Color(0, 0, 0);
     
@@ -81,7 +81,7 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth)
     for(i = 0; i < scene.lights.size(); i++)
     {
         Vector dir = (scene.lights[i]->center - hitPoint).unit();
-        Ray lightRay = Ray(hitPoint + 0.001 * dir, dir, ray.mu);
+        Ray lightRay = Ray(hitPoint + 0.001 * dir, dir);
         ObjectDistancePair odp = scene.findClosest(lightRay);
         if(odp.first != scene.lights[i]) continue;
         
@@ -101,16 +101,32 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth)
     
 	// reflected ray
 	Vector dir = ray.dir - 2 * project(ray.dir, normal);
-	Ray refl = Ray(hitPoint + 0.001 * dir, dir, ray.mu);
-	Color colRefl = trace(refl, scene, depth + 1).first;
+	Ray refl = Ray(hitPoint + 0.001 * dir, dir);
+	Color colRefl = trace(refl, scene, depth + 1, mu).first;
     
 	// refracted ray
+    double nextmu;
+    if(angle(ray.dir, normal) < 90 * D2R) // hit from inside
+    {
+        normal = -normal;
+        if(!refrInd.empty())
+        {
+            nextmu = refrInd.top();
+            refrInd.pop();
+        }
+        else nextmu = 1;
+    }
+    else
+    {
+        nextmu = obj->mat.mu;
+        refrInd.push(mu);
+    }
 	double t1 = angle(ray.dir, -normal);
-	double t2 = asin(sin(t1) * ray.mu / obj->mat.mu);
+	double t2 = asin(sin(t1) * mu / nextmu);
     if(t2 < 90 * D2R) dir = rotate(ray.dir, cross(ray.dir, normal), t2 - t1);
     else dir = ray.dir - 2 * project(ray.dir, normal);
-	Ray refr = Ray(hitPoint + 0.001 * dir, dir, obj->mat.mu);
-	Color colRefr = trace(refr, scene, depth + 1).first;
+	Ray refr = Ray(hitPoint + 0.001 * dir, dir);
+	Color colRefr = trace(refr, scene, depth + 1, nextmu).first;
     
     color = color + colRefl * obj->mat.reflectance + colRefr * obj->mat.refractance;
 
