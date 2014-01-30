@@ -74,7 +74,10 @@ double dot(Vector a, Vector b)
 
 double angle(Vector a, Vector b)
 {
-    return acos(dot(a.unit(), b.unit()));
+    double tmp = dot(a.unit(), b.unit());
+    if(tmp < -1.0) tmp = -1.0;
+    if(tmp > 1.0) tmp = 1.0;
+    return acos(tmp);
 }
 
 Vector cross(Vector a, Vector b)
