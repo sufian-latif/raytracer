@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5EC7E9691895634100D4E612 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9681895634100D4E612 /* main.cpp */; };
 		5EC7E96B1895634100D4E612 /* RayTracer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5EC7E96A1895634100D4E612 /* RayTracer.1 */; };
-		5EC7E9881895639100D4E612 /* Checkerboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9711895639100D4E612 /* Checkerboard.cpp */; };
 		5EC7E9891895639100D4E612 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9731895639100D4E612 /* Color.cpp */; };
 		5EC7E98A1895639100D4E612 /* Disk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9751895639100D4E612 /* Disk.cpp */; };
 		5EC7E98B1895639100D4E612 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9771895639100D4E612 /* LightSource.cpp */; };
@@ -20,6 +19,7 @@
 		5EC7E9901895639100D4E612 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9821895639100D4E612 /* Scene.cpp */; };
 		5EC7E9911895639100D4E612 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9841895639100D4E612 /* Sphere.cpp */; };
 		5EC7E9921895639100D4E612 /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9861895639100D4E612 /* Vector.cpp */; };
+		5EEC2883189A56E70054EBED /* CheckerBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2881189A56E70054EBED /* CheckerBoard.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,8 +39,6 @@
 		5EC7E9651895634100D4E612 /* RayTracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC7E9681895634100D4E612 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5EC7E96A1895634100D4E612 /* RayTracer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = RayTracer.1; sourceTree = "<group>"; };
-		5EC7E9711895639100D4E612 /* Checkerboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Checkerboard.cpp; sourceTree = "<group>"; };
-		5EC7E9721895639100D4E612 /* Checkerboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkerboard.h; sourceTree = "<group>"; };
 		5EC7E9731895639100D4E612 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
 		5EC7E9741895639100D4E612 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		5EC7E9751895639100D4E612 /* Disk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Disk.cpp; sourceTree = "<group>"; };
@@ -62,6 +60,8 @@
 		5EC7E9851895639100D4E612 /* Sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = "<group>"; };
 		5EC7E9861895639100D4E612 /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector.cpp; sourceTree = "<group>"; };
 		5EC7E9871895639100D4E612 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		5EEC2881189A56E70054EBED /* CheckerBoard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CheckerBoard.cpp; sourceTree = SOURCE_ROOT; };
+		5EEC2882189A56E70054EBED /* CheckerBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckerBoard.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,18 +96,8 @@
 			children = (
 				5EC7E9681895634100D4E612 /* main.cpp */,
 				5EC7E993189568D600D4E612 /* Objects */,
-				5EC7E9731895639100D4E612 /* Color.cpp */,
-				5EC7E9741895639100D4E612 /* Color.h */,
-				5EC7E9791895639100D4E612 /* Material.cpp */,
-				5EC7E97A1895639100D4E612 /* Material.h */,
-				5EC7E97E1895639100D4E612 /* Ray.cpp */,
-				5EC7E97F1895639100D4E612 /* Ray.h */,
-				5EC7E9801895639100D4E612 /* RayTracer.cpp */,
-				5EC7E9811895639100D4E612 /* RayTracer.h */,
-				5EC7E9821895639100D4E612 /* Scene.cpp */,
-				5EC7E9831895639100D4E612 /* Scene.h */,
-				5EC7E9861895639100D4E612 /* Vector.cpp */,
-				5EC7E9871895639100D4E612 /* Vector.h */,
+				5ED5A616189932A2005C1E02 /* Utils */,
+				5ED5A617189932B0005C1E02 /* Engine */,
 				5EC7E96A1895634100D4E612 /* RayTracer.1 */,
 			);
 			path = RayTracer;
@@ -116,8 +106,8 @@
 		5EC7E993189568D600D4E612 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				5EC7E9711895639100D4E612 /* Checkerboard.cpp */,
-				5EC7E9721895639100D4E612 /* Checkerboard.h */,
+				5EEC2881189A56E70054EBED /* CheckerBoard.cpp */,
+				5EEC2882189A56E70054EBED /* CheckerBoard.h */,
 				5EC7E9751895639100D4E612 /* Disk.cpp */,
 				5EC7E9761895639100D4E612 /* Disk.h */,
 				5EC7E9771895639100D4E612 /* LightSource.cpp */,
@@ -129,6 +119,32 @@
 				5EC7E9851895639100D4E612 /* Sphere.h */,
 			);
 			name = Objects;
+			sourceTree = "<group>";
+		};
+		5ED5A616189932A2005C1E02 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5EC7E9731895639100D4E612 /* Color.cpp */,
+				5EC7E9741895639100D4E612 /* Color.h */,
+				5EC7E9791895639100D4E612 /* Material.cpp */,
+				5EC7E97A1895639100D4E612 /* Material.h */,
+				5EC7E97E1895639100D4E612 /* Ray.cpp */,
+				5EC7E97F1895639100D4E612 /* Ray.h */,
+				5EC7E9861895639100D4E612 /* Vector.cpp */,
+				5EC7E9871895639100D4E612 /* Vector.h */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		5ED5A617189932B0005C1E02 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				5EC7E9801895639100D4E612 /* RayTracer.cpp */,
+				5EC7E9811895639100D4E612 /* RayTracer.h */,
+				5EC7E9821895639100D4E612 /* Scene.cpp */,
+				5EC7E9831895639100D4E612 /* Scene.h */,
+			);
+			name = Engine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,8 +203,8 @@
 				5EC7E9921895639100D4E612 /* Vector.cpp in Sources */,
 				5EC7E98B1895639100D4E612 /* LightSource.cpp in Sources */,
 				5EC7E98C1895639100D4E612 /* Material.cpp in Sources */,
-				5EC7E9881895639100D4E612 /* Checkerboard.cpp in Sources */,
 				5EC7E98E1895639100D4E612 /* Ray.cpp in Sources */,
+				5EEC2883189A56E70054EBED /* CheckerBoard.cpp in Sources */,
 				5EC7E9891895639100D4E612 /* Color.cpp in Sources */,
 				5EC7E9911895639100D4E612 /* Sphere.cpp in Sources */,
 				5EC7E98D1895639100D4E612 /* Plane.cpp in Sources */,
@@ -301,6 +317,7 @@
 				5EC7E9701895634100D4E612 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
