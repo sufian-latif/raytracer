@@ -14,12 +14,11 @@
 struct Plane : Object3D
 {
 	Vector normal, pp;
-	double unit;
 
     Plane(Vector pp, Vector normal);
 	double getIntersection(Ray ray);
 	Vector getNormal(Vector p);
-	Color getColor(Vector p = Vector(0, 0, 0));
+	Color getColor(Vector p);
     bool isLightSource();
     
 };

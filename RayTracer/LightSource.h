@@ -10,14 +10,12 @@
 #define __RayTracing__LightSource__
 
 # include "Sphere.h"
-# include "Vector.h"
-# include "Color.h"
 
 struct LightSource : Sphere
 {
 	double intensity;
     
-	LightSource(Vector c, double r, double i);
+	LightSource(Vector c, double r, double in);
     bool isLightSource();
 };
 
