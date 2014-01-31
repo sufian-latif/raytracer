@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E73D490189BDBDB00AE4EC0 /* CheckerBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E73D48E189BDBDB00AE4EC0 /* CheckerBoard.cpp */; };
 		5EC7E9691895634100D4E612 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9681895634100D4E612 /* main.cpp */; };
 		5EC7E96B1895634100D4E612 /* RayTracer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5EC7E96A1895634100D4E612 /* RayTracer.1 */; };
 		5EC7E9891895639100D4E612 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9731895639100D4E612 /* Color.cpp */; };
@@ -19,7 +20,6 @@
 		5EC7E9901895639100D4E612 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9821895639100D4E612 /* Scene.cpp */; };
 		5EC7E9911895639100D4E612 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9841895639100D4E612 /* Sphere.cpp */; };
 		5EC7E9921895639100D4E612 /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7E9861895639100D4E612 /* Vector.cpp */; };
-		5EEC2883189A56E70054EBED /* CheckerBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2881189A56E70054EBED /* CheckerBoard.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +36,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5E73D48E189BDBDB00AE4EC0 /* CheckerBoard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CheckerBoard.cpp; sourceTree = "<group>"; };
+		5E73D48F189BDBDB00AE4EC0 /* CheckerBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckerBoard.h; sourceTree = "<group>"; };
 		5EC7E9651895634100D4E612 /* RayTracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC7E9681895634100D4E612 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5EC7E96A1895634100D4E612 /* RayTracer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = RayTracer.1; sourceTree = "<group>"; };
@@ -60,8 +62,6 @@
 		5EC7E9851895639100D4E612 /* Sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = "<group>"; };
 		5EC7E9861895639100D4E612 /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector.cpp; sourceTree = "<group>"; };
 		5EC7E9871895639100D4E612 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
-		5EEC2881189A56E70054EBED /* CheckerBoard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CheckerBoard.cpp; sourceTree = SOURCE_ROOT; };
-		5EEC2882189A56E70054EBED /* CheckerBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckerBoard.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +106,8 @@
 		5EC7E993189568D600D4E612 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				5EEC2881189A56E70054EBED /* CheckerBoard.cpp */,
-				5EEC2882189A56E70054EBED /* CheckerBoard.h */,
+				5E73D48E189BDBDB00AE4EC0 /* CheckerBoard.cpp */,
+				5E73D48F189BDBDB00AE4EC0 /* CheckerBoard.h */,
 				5EC7E9751895639100D4E612 /* Disk.cpp */,
 				5EC7E9761895639100D4E612 /* Disk.h */,
 				5EC7E9771895639100D4E612 /* LightSource.cpp */,
@@ -201,10 +201,10 @@
 				5EC7E98F1895639100D4E612 /* RayTracer.cpp in Sources */,
 				5EC7E98A1895639100D4E612 /* Disk.cpp in Sources */,
 				5EC7E9921895639100D4E612 /* Vector.cpp in Sources */,
+				5E73D490189BDBDB00AE4EC0 /* CheckerBoard.cpp in Sources */,
 				5EC7E98B1895639100D4E612 /* LightSource.cpp in Sources */,
 				5EC7E98C1895639100D4E612 /* Material.cpp in Sources */,
 				5EC7E98E1895639100D4E612 /* Ray.cpp in Sources */,
-				5EEC2883189A56E70054EBED /* CheckerBoard.cpp in Sources */,
 				5EC7E9891895639100D4E612 /* Color.cpp in Sources */,
 				5EC7E9911895639100D4E612 /* Sphere.cpp in Sources */,
 				5EC7E98D1895639100D4E612 /* Plane.cpp in Sources */,
