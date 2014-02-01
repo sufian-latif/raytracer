@@ -106,25 +106,40 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth, double mu)
     
 	// refracted ray
     double nextmu;
+    bool hitFromInside = false;
+    
     if(angle(ray.dir, normal) < 90 * D2R) // hit from inside
     {
         normal = -normal;
         if(!refrInd.empty())
         {
             nextmu = refrInd.top();
-            refrInd.pop();
         }
         else nextmu = 1;
+        hitFromInside = true;
     }
-    else
+    else // hit from outside
     {
         nextmu = obj->mat.mu;
-        refrInd.push(mu);
     }
+    
 	double t1 = angle(ray.dir, -normal);
-	double t2 = asin(sin(t1) * mu / nextmu);
-    if(t2 < 90 * D2R) dir = rotate(ray.dir, cross(ray.dir, normal), t2 - t1);
-    else dir = ray.dir - 2 * project(ray.dir, normal);
+    double sinT2 = sin(t1) * mu / nextmu;
+    
+    if(sinT2 > 1) // full internal reflection
+    {
+        dir = ray.dir - 2 * project(ray.dir, normal);
+        nextmu = mu;
+    }
+    else // refraction
+    {
+        double t2 = asin(sinT2);
+        dir = rotate(ray.dir, cross(ray.dir, normal), t2 - t1);
+        
+        if(hitFromInside && !refrInd.empty()) refrInd.pop();
+        else refrInd.push(mu);
+        
+    }
 	Ray refr = Ray(hitPoint + 0.001 * dir, dir);
 	Color colRefr = trace(refr, scene, depth + 1, nextmu).first;
     
