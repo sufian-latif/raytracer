@@ -35,9 +35,9 @@ Vector Sphere::getNormal(Vector p)
 	return (p - center).unit();
 }
 
-Color Sphere::getColor(Vector p)
+Material Sphere::getMaterial(Vector p)
 {
-	return mat.color;
+	return mat;
 }
 
 bool Sphere::isLightSource()

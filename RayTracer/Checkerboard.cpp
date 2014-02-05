@@ -15,12 +15,13 @@ CheckerBoard::CheckerBoard(Vector pp, Vector normal, Vector u, double size) : Pl
     this->size = size;
 }
 
-Color CheckerBoard::getColor(Vector p)
+Material CheckerBoard::getMaterial(Vector p)
 {
 	double x = cos(angle(project(p - pp, u), u)) * project(p - pp, u).mag() / size;
     double y = cos(angle(project(p - pp, v), v)) * project(p - pp, v).mag() / size;
     
 	if(x * y > 0)
-		return (int(x) + int(y)) % 2 ? col1 : col2;
-	return (int(x) + int(y)) % 2 ? col2 : col1;
+        mat.diffuse = col1;
+    mat.diffuse = col2;
+	return mat;
 }

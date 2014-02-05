@@ -18,7 +18,7 @@ struct Object3D
     
 	virtual double getIntersection(Ray ray) = 0;
 	virtual Vector getNormal(Vector p) = 0;
-	virtual Color getColor(Vector p = Vector(0, 0, 0)) = 0;
+	virtual Material getMaterial(Vector p = Vector(0, 0, 0)) = 0;
     virtual bool isLightSource() = 0;
 };
 

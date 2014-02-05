@@ -18,7 +18,7 @@ struct CheckerBoard : Plane
     double size;
     
     CheckerBoard(Vector pp, Vector normal, Vector u, double size = 1);
-    Color getColor(Vector p);
+    Material getMaterial(Vector p);
 };
 
 #endif /* defined(__RayTracing__CheckerBoard__) */

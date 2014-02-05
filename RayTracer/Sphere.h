@@ -19,7 +19,7 @@ struct Sphere : Object3D
 	Sphere(Vector c, double r);
 	double getIntersection(Ray ray);
 	Vector getNormal(Vector p);
-	Color getColor(Vector p = Vector(0, 0, 0));
+    Material getMaterial(Vector p = Vector(0, 0, 0));
     bool isLightSource();
 };
 

@@ -25,9 +25,9 @@ double Plane::getIntersection(Ray ray)
 	return t < 0 ? -1 : t;
 }
 
-Color Plane::getColor(Vector p)
+Material Plane::getMaterial(Vector p)
 {
-    return mat.color;
+    return mat;
 }
 
 bool Plane::isLightSource()

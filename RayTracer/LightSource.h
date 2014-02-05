@@ -17,6 +17,7 @@ struct LightSource : Sphere
     
 	LightSource(Vector c, double r, double in);
     bool isLightSource();
+    Color getColor();
 };
 
 #endif /* defined(__RayTracing__LightSource__) */

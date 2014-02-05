@@ -13,8 +13,8 @@
 
 struct Material
 {
-	Color color;
-	double reflectance, refractance, mu, diffuse, specular;
+	Color ambient, diffuse, specular;
+	double reflectance, refractance, mu, shininess;
 };
 
 #endif /* defined(__RayTracing__Material__) */

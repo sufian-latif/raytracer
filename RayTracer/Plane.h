@@ -18,7 +18,7 @@ struct Plane : Object3D
     Plane(Vector pp, Vector normal);
 	double getIntersection(Ray ray);
 	Vector getNormal(Vector p);
-	Color getColor(Vector p);
+	Material getMaterial(Vector p);
     bool isLightSource();
     
 };

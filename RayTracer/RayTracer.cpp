@@ -11,6 +11,7 @@
 # define D2R (acos(0) / 90.0)
 # define INF 99999.0
 # define sq(x) ((x) * (x))
+# define EPSILON 0.001
 
 RayTracer::RayTracer(Vector vp, Vector dir, Vector up, int w, int h, int maxD)
 {
@@ -67,7 +68,7 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth, double mu)
         return make_pair(scene.background, INF);
 
     if(obj->isLightSource())
-        return make_pair(obj->getColor(), dist);
+        return make_pair(((LightSource*)obj)->getColor(), dist);
 
     Vector hitPoint = ray.origin + dist * ray.dir;
     Vector normal = obj->getNormal(hitPoint);
@@ -81,27 +82,27 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth, double mu)
     for(i = 0; i < scene.lights.size(); i++)
     {
         Vector dir = (scene.lights[i]->center - hitPoint).unit();
-        Ray lightRay = Ray(hitPoint + 0.001 * dir, dir);
+        Ray lightRay = Ray(hitPoint + EPSILON * dir, dir);
         ObjectDistancePair odp = scene.findClosest(lightRay);
         if(odp.first != scene.lights[i]) continue;
         
         // diffuse color
         double cosInc = dot(lightRay.dir, normal);
         double intensity = scene.lights[i]->intensity / sq(odp.second);
-        Color diffuse = obj->mat.diffuse * intensity * cosInc * scene.lights[i]->getColor() * obj->getColor(hitPoint);
+        Color diffuse = intensity * cosInc * scene.lights[i]->getColor() * obj->getMaterial(hitPoint).diffuse;
         color = color + diffuse;
 
         // specular color
         Vector tmp = (lightRay.dir - 2 * (dot(lightRay.dir, normal)) * normal).unit();
-        intensity = pow(dot(ray.dir, tmp), 50) * obj->mat.specular;
-        intensity *= scene.lights[i]->intensity / sq(odp.second);
-        Color specular = intensity * scene.lights[i]->getColor();
+        double highlight = pow(dot(ray.dir, tmp), obj->getMaterial().shininess);
+        intensity = scene.lights[i]->intensity / sq(odp.second);
+        Color specular = intensity * highlight * obj->getMaterial().specular * scene.lights[i]->getColor();
         color = color + specular;
     }
     
 	// reflected ray
 	Vector dir = ray.dir - 2 * project(ray.dir, normal);
-	Ray refl = Ray(hitPoint + 0.001 * dir, dir);
+	Ray refl = Ray(hitPoint + EPSILON * dir, dir);
 	Color colRefl = trace(refl, scene, depth + 1, mu).first;
     
 	// refracted ray
@@ -140,7 +141,7 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth, double mu)
         else refrInd.push(mu);
         
     }
-	Ray refr = Ray(hitPoint + 0.001 * dir, dir);
+	Ray refr = Ray(hitPoint + EPSILON * dir, dir);
 	Color colRefr = trace(refr, scene, depth + 1, nextmu).first;
     
     color = color + colRefl * obj->mat.reflectance + colRefr * obj->mat.refractance;
