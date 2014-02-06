@@ -12,6 +12,7 @@
 # define INF 99999.0
 # define sq(x) ((x) * (x))
 # define EPSILON 0.001
+# define max(a, b) ((a) > (b) ? (a) : (b))
 
 RayTracer::RayTracer(Vector vp, Vector dir, Vector up, int w, int h, int maxD)
 {
@@ -94,7 +95,7 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth, double mu)
 
         // specular color
         Vector tmp = (lightRay.dir - 2 * (dot(lightRay.dir, normal)) * normal).unit();
-        double highlight = pow(dot(ray.dir, tmp), obj->getMaterial().shininess);
+        double highlight = pow(max(dot(ray.dir, tmp), 0), obj->getMaterial().shininess);
         intensity = scene.lights[i]->intensity / sq(odp.second);
         Color specular = intensity * highlight * obj->getMaterial().specular * scene.lights[i]->getColor();
         color = color + specular;
@@ -146,7 +147,7 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth, double mu)
     
     color = color + colRefl * obj->mat.reflectance + colRefr * obj->mat.refractance;
 
-    return make_pair(scene.ambient + color, dist);
+    return make_pair(scene.ambient * obj->mat.ambient + color, dist);
 }
 
 void RayTracer::writeBMP(char* filename)
