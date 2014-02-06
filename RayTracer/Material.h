@@ -10,11 +10,18 @@
 #define __RayTracing__Material__
 
 # include "Color.h"
+# include <map>
+# include <string>
+
+using namespace std;
 
 struct Material
 {
 	Color ambient, diffuse, specular;
 	double reflectance, refractance, mu, shininess;
 };
+
+extern map <string, Material> materials;
+void loadMaterials(char *file);
 
 #endif /* defined(__RayTracing__Material__) */
