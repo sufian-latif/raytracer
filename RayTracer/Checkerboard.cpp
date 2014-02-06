@@ -21,7 +21,8 @@ Material CheckerBoard::getMaterial(Vector p)
     double y = cos(angle(project(p - pp, v), v)) * project(p - pp, v).mag() / size;
     
 	if(x * y > 0)
-        mat.diffuse = col1;
-    mat.diffuse = col2;
-	return mat;
+		mat.diffuse = (int(x) + int(y)) % 2 ? col1 : col2;
+	mat.diffuse = (int(x) + int(y)) % 2 ? col2 : col1;
+    
+    return mat;
 }
