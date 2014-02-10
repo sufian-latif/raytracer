@@ -21,9 +21,9 @@ Material CheckerBoard::getMaterial(Vector p)
     double y = dot(p - pp, v) / size;
     
 	if(x * y > 0)
-        mat.ambient = mat.diffuse = (int(x) + int(y)) % 2 ? col1 : col2;
+        return (int(x) + int(y)) % 2 ? mat1 : mat2;
     else
-        mat.ambient = mat.diffuse = (int(x) + int(y)) % 2 ? col2 : col1;
+        return (int(x) + int(y)) % 2 ? mat2 : mat1;
     
     return mat;
 }

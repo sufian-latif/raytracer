@@ -14,7 +14,7 @@
 struct CheckerBoard : Plane
 {
     Vector u, v;
-    Color col1, col2;
+    Material mat1, mat2;
     double size;
     
     CheckerBoard(Vector pp, Vector normal, Vector u, double size = 1);
