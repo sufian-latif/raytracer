@@ -17,12 +17,13 @@ CheckerBoard::CheckerBoard(Vector pp, Vector normal, Vector u, double size) : Pl
 
 Material CheckerBoard::getMaterial(Vector p)
 {
-	double x = cos(angle(project(p - pp, u), u)) * project(p - pp, u).mag() / size;
-    double y = cos(angle(project(p - pp, v), v)) * project(p - pp, v).mag() / size;
+    double x = dot(p - pp, u) / size;
+    double y = dot(p - pp, v) / size;
     
 	if(x * y > 0)
-		mat.diffuse = (int(x) + int(y)) % 2 ? col1 : col2;
-	mat.diffuse = (int(x) + int(y)) % 2 ? col2 : col1;
+        mat.ambient = mat.diffuse = (int(x) + int(y)) % 2 ? col1 : col2;
+    else
+        mat.ambient = mat.diffuse = (int(x) + int(y)) % 2 ? col2 : col1;
     
     return mat;
 }
