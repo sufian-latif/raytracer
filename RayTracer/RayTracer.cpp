@@ -104,7 +104,7 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth, double mu)
 	// reflected ray
 	Vector dir = ray.dir - 2 * project(ray.dir, normal);
 	Ray refl = Ray(hitPoint + EPSILON * dir, dir);
-	Color colRefl = trace(refl, scene, depth + 1, mu).first;
+	Color colRefl = trace(refl, scene, depth + 1, mu).first * obj->getMaterial().reflectance;
     
 	// refracted ray
     double nextmu;
@@ -122,7 +122,7 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth, double mu)
     }
     else // hit from outside
     {
-        nextmu = obj->mat.mu;
+        nextmu = obj->getMaterial().mu;
     }
     
 	double t1 = angle(ray.dir, -normal);
@@ -143,11 +143,13 @@ ColorDistancePair RayTracer::trace(Ray ray, Scene scene, int depth, double mu)
         
     }
 	Ray refr = Ray(hitPoint + EPSILON * dir, dir);
-	Color colRefr = trace(refr, scene, depth + 1, nextmu).first;
+	Color colRefr = trace(refr, scene, depth + 1, nextmu).first * obj->getMaterial().refractance;
     
-    color = color + colRefl * obj->mat.reflectance + colRefr * obj->mat.refractance;
+    color = (1 - obj->getMaterial(hitPoint).refractance - obj->getMaterial(hitPoint).refractance) * color + colRefl + colRefr;
+    
+    color = color + scene.ambient * obj->getMaterial(hitPoint).ambient;
 
-    return make_pair(scene.ambient * obj->mat.ambient + color, dist);
+    return make_pair(color, dist);
 }
 
 void RayTracer::writeBMP(char* filename)
